@@ -21,7 +21,7 @@ const Item = ({ id }) => {
   };
   const handleLongPressUp = (e) => {
     // avoid selection while no movement
-    if (x !== e.clientX) e.stopPropagation();
+    // if (e.pointerType === "mouse" && x !== e.clientX) e.stopPropagation();
     setIsCropping(false);
   };
   useLongPress(cropRef, handleLongPressDown, handleLongPressUp);

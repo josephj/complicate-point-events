@@ -40,13 +40,12 @@ export const useLongPress = (
     el.addEventListener("pointerleave", handlePointerCancel);
     el.addEventListener("pointercancel", handlePointerCancel);
     return () => {
-      console.log("unmount");
       el.removeEventListener("pointerdown", handlePointerDown);
-      el.removeEventListener("pointerup", handlePointerCancel);
+      el.removeEventListener("pointerup", handlePointerUp);
       el.removeEventListener("pointerleave", handlePointerCancel);
       el.removeEventListener("pointercancel", handlePointerCancel);
     };
-  }, [ref, duration, timer, onLongPressDown, onLongPressUp, onLongPressCancel]);
+  }, []);
 };
 
 export default useLongPress;

@@ -1,15 +1,17 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 
 const useLongClick = (ref, callback, options) => {
   const { duration = 300, isSkipMouse = false } = options || {};
   const [startTime, setStartTime] = useState(null);
 
-  const handlePointerDown = useCallback(() => {
-    setStartTime(performance.now());
-  }, []);
+  useEffect(() => {
+    const el = ref.current;
 
-  const handlePointerUp = useCallback(
-    (e) => {
+    const handlePointerDown = () => {
+      setStartTime(performance.now());
+    };
+
+    const handlePointerUp = (e) => {
       setStartTime(null);
       const isMouseEvent = e.pointerType === "mouse";
       if (!isSkipMouse || !isMouseEvent) {
@@ -17,16 +19,11 @@ const useLongClick = (ref, callback, options) => {
         if (!startTime || endTime - startTime < duration) return;
       }
       callback();
-    },
-    [startTime, callback, duration, isSkipMouse]
-  );
+    };
 
-  const handlePointerCancel = useCallback(() => {
-    setStartTime(null);
-  }, []);
-
-  useEffect(() => {
-    const el = ref.current;
+    const handlePointerCancel = () => {
+      setStartTime(null);
+    };
 
     el.addEventListener("pointerdown", handlePointerDown);
     el.addEventListener("pointerup", handlePointerUp);
@@ -39,7 +36,7 @@ const useLongClick = (ref, callback, options) => {
       el.removeEventListener("pointerleave", handlePointerCancel);
       el.removeEventListener("pointercancel", handlePointerCancel);
     };
-  }, [ref, handlePointerDown, handlePointerUp, handlePointerCancel]);
+  }, []);
 };
 
 export default useLongClick;
