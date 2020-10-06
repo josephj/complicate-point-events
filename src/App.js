@@ -5,7 +5,7 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <h1>Point Events Playground</h1>
+      <h1>Pointer Events</h1>
       <p>Scrolling, Item Selection, and Crop Moving</p>
       <ul>
         {Array.from(Array(50)).map((_, i) => (

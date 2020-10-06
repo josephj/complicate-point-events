@@ -1,42 +1,47 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 const useLongClick = (ref, callback, options) => {
-  const { duration = 300, isSkipMouse = false } = options || {};
-  const [startTime, setStartTime] = useState(null);
+  const { duration = 150, isSkipMouse = true } = options || {};
 
   useEffect(() => {
     const el = ref.current;
 
-    const handlePointerDown = () => {
-      setStartTime(performance.now());
+    let startTime = null;
+
+    const bind = () => {
+      el.addEventListener("pointerup", handlePointerUp);
+      el.addEventListener("pointerleave", handlePointerCancel);
+      el.addEventListener("pointercancel", handlePointerCancel);
     };
 
-    const handlePointerUp = (e) => {
-      setStartTime(null);
-      const isMouseEvent = e.pointerType === "mouse";
-      if (!isSkipMouse || !isMouseEvent) {
-        const endTime = performance.now();
-        if (!startTime || endTime - startTime < duration) return;
-      }
-      callback();
-    };
-
-    const handlePointerCancel = () => {
-      setStartTime(null);
-    };
-
-    el.addEventListener("pointerdown", handlePointerDown);
-    el.addEventListener("pointerup", handlePointerUp);
-    el.addEventListener("pointerleave", handlePointerCancel);
-    el.addEventListener("pointercancel", handlePointerCancel);
-
-    return () => {
-      el.removeEventListener("pointerdown", handlePointerDown);
+    const unbind = () => {
       el.removeEventListener("pointerup", handlePointerUp);
       el.removeEventListener("pointerleave", handlePointerCancel);
       el.removeEventListener("pointercancel", handlePointerCancel);
     };
-  }, []);
+
+    const handlePointerDown = () => {
+      startTime = performance.now();
+      bind();
+    };
+
+    const handlePointerCancel = () => {
+      startTime = null;
+      unbind();
+    };
+
+    const handlePointerUp = (e) => {
+      const isMouseEvent = e.pointerType === "mouse";
+      const isSkip = isSkipMouse && isMouseEvent;
+      const isPassed = performance.now() - startTime >= duration;
+      if (isSkip || isPassed) callback(e);
+      startTime = null;
+      unbind();
+    };
+
+    el.addEventListener("pointerdown", handlePointerDown);
+    return () => el.removeEventListener("pointerdown", handlePointerDown);
+  }, [ref, callback, duration, isSkipMouse]);
 };
 
 export default useLongClick;

@@ -33,15 +33,9 @@ ul, li {
   touch-action: none;
 }
 
-.Item .Crop {
-  cursor: grab;
-}
-.Item--cropping .Crop {
-  border: 1px solid red;
-  cursor: grabbing;
-}
 
 .Crop {
+  cursor: grab;
   position: absolute;
   background-color: #ff0c;
   display: inline-block;
@@ -57,9 +51,10 @@ ul, li {
   z-index: 1;
 }
 
-/* .Crop--moving {
-  //cursor: grabbing;
-} */
+.Crop--moving {
+  cursor: grabbing;
+  border: 1px solid red;
+}
 
 .Label {
   position: absolute;
