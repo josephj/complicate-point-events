@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/point-events-playground/static/css/main.89d83d6d.chunk.css",
-    "main.js": "/point-events-playground/static/js/main.42337fbc.chunk.js",
-    "main.js.map": "/point-events-playground/static/js/main.42337fbc.chunk.js.map",
-    "runtime-main.js": "/point-events-playground/static/js/runtime-main.8bf16e3c.js",
-    "runtime-main.js.map": "/point-events-playground/static/js/runtime-main.8bf16e3c.js.map",
-    "static/js/2.a25ad851.chunk.js": "/point-events-playground/static/js/2.a25ad851.chunk.js",
-    "static/js/2.a25ad851.chunk.js.map": "/point-events-playground/static/js/2.a25ad851.chunk.js.map",
-    "index.html": "/point-events-playground/index.html",
-    "precache-manifest.15aa7683bea11a36be4f73da8b7fd173.js": "/point-events-playground/precache-manifest.15aa7683bea11a36be4f73da8b7fd173.js",
-    "service-worker.js": "/point-events-playground/service-worker.js",
-    "static/css/main.89d83d6d.chunk.css.map": "/point-events-playground/static/css/main.89d83d6d.chunk.css.map",
-    "static/js/2.a25ad851.chunk.js.LICENSE.txt": "/point-events-playground/static/js/2.a25ad851.chunk.js.LICENSE.txt"
+    "main.css": "/point-events-prototype/static/css/main.89d83d6d.chunk.css",
+    "main.js": "/point-events-prototype/static/js/main.fd471744.chunk.js",
+    "main.js.map": "/point-events-prototype/static/js/main.fd471744.chunk.js.map",
+    "runtime-main.js": "/point-events-prototype/static/js/runtime-main.1f80e463.js",
+    "runtime-main.js.map": "/point-events-prototype/static/js/runtime-main.1f80e463.js.map",
+    "static/js/2.69ba2e7e.chunk.js": "/point-events-prototype/static/js/2.69ba2e7e.chunk.js",
+    "static/js/2.69ba2e7e.chunk.js.map": "/point-events-prototype/static/js/2.69ba2e7e.chunk.js.map",
+    "index.html": "/point-events-prototype/index.html",
+    "precache-manifest.2ec7b232063ea05d252a2e57a85ee73f.js": "/point-events-prototype/precache-manifest.2ec7b232063ea05d252a2e57a85ee73f.js",
+    "service-worker.js": "/point-events-prototype/service-worker.js",
+    "static/css/main.89d83d6d.chunk.css.map": "/point-events-prototype/static/css/main.89d83d6d.chunk.css.map",
+    "static/js/2.69ba2e7e.chunk.js.LICENSE.txt": "/point-events-prototype/static/js/2.69ba2e7e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.8bf16e3c.js",
-    "static/js/2.a25ad851.chunk.js",
+    "static/js/runtime-main.1f80e463.js",
+    "static/js/2.69ba2e7e.chunk.js",
     "static/css/main.89d83d6d.chunk.css",
-    "static/js/main.42337fbc.chunk.js"
+    "static/js/main.fd471744.chunk.js"
   ]
 }
