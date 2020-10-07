@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "867decae1f354be9381bbcff599c47eb",
+    "revision": "01dffb35b3cf05a477eabd62fc7fef32",
     "url": "/point-events-prototype/index.html"
   },
   {
-    "revision": "28b4288ac5d05d9dfdc9",
+    "revision": "29d5f6d729e6aa20ccd6",
     "url": "/point-events-prototype/static/css/main.89d83d6d.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/point-events-prototype/static/js/2.69ba2e7e.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "28b4288ac5d05d9dfdc9",
-    "url": "/point-events-prototype/static/js/main.f891e909.chunk.js"
+    "revision": "29d5f6d729e6aa20ccd6",
+    "url": "/point-events-prototype/static/js/main.90aac90f.chunk.js"
   },
   {
     "revision": "84721a0c928d286847ea",
