@@ -12,12 +12,9 @@ const Item = ({ id }) => {
   ]);
   useLongClick(itemRef, handleLongClick);
 
-  // Enabling Crop
-  const cropRef = useRef(null);
-
   return (
     <li ref={itemRef} className={cx("Item", { "Item--selected": isSelected })}>
-      <Crop ref={cropRef} />
+      <Crop key={id} />
       <span className="Label">#{id + 1}</span>
     </li>
   );

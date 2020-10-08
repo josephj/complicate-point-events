@@ -1,5 +1,6 @@
 import cx from "classnames";
-import React, { forwardRef, useState } from "react";
+import React, { useRef, useState } from "react";
+import "pepjs";
 // import useLongPress from "./useLongPress";
 
 document.addEventListener("pointercancel", (e) => {
@@ -7,24 +8,24 @@ document.addEventListener("pointercancel", (e) => {
 });
 
 let timer;
-const Crop = (_, ref) => {
+let labelStyle = `background: #369; color: #fff; padding: 2px 5px; width: 100px; border-radius: 4px; display: inline-block`;
+const Crop = () => {
+  const ref = useRef(null);
   const [isMoving, setIsMoving] = useState(false);
   const [posX, setPosX] = useState(null);
 
   const handlePointerDown = (e) => {
-    console.log("handlePointerDown");
-    console.log("handlePointerDown > e.pressure", e.pressure);
+    console.log(`%c${e.type}`, labelStyle, `e.pressure = ${e.pressure}`);
     setPosX(e.clientX);
     const el = ref.current;
     timer = setTimeout(() => {
       // callback
       setIsMoving(true);
       el.style.touchAction = "none";
+      el.closest("ul").style.touchAction = "none";
       el.closest(".Item ").style.touchAction = "none";
-      console.log(
-        "handlePointerUp > touchAction",
-        el.closest(".Item").style.touchAction
-      );
+      console.log("e", e.type); // FIXME - Why?
+      console.log(`%c${e.type}`, labelStyle, "touchAction", "none");
       timer = null;
     }, 500);
   };
@@ -32,24 +33,23 @@ const Crop = (_, ref) => {
   const handlePointerUp = (e) => {
     if (timer) {
       clearTimeout(timer);
-      console.log("handlePointerUp > Failed to long press");
+      console.log(`%c${e.type}`, labelStyle, `Failed to long press`);
     } else {
       // success long press
       const el = ref.current;
       el.style.touchAction = "";
       el.closest(".Item ").style.touchAction = "";
-      console.log(
-        "handlePointerUp > touchAction",
-        el.closest(".Item").style.touchAction
-      );
-      console.log("handlePointerUp > Long pressed");
+      el.closest("ul").style.touchAction = "";
+      console.log(`%c${e.type}`, labelStyle, "Long pressed successfully");
+      // console.log(e.type, "touchAction", el.closest(".Item").style.touchAction);
     }
     setIsMoving(false);
   };
 
   const handlePointerMove = (e) => {
+    // console.log(`%c${e.type}`, labelStyle);
     if (!isMoving) return;
-    console.log("handlePointerMove");
+    // console.log(`%c${e.type}`, labelStyle, "isMoving");
     const el = e.currentTarget;
     const parentEl = el.parentNode;
     const maxMoveX = parentEl.offsetWidth - el.offsetWidth - 8;
@@ -57,27 +57,35 @@ const Crop = (_, ref) => {
     const left = Math.min(Math.max(0, el.offsetLeft - moveX), maxMoveX);
     el.style.top = 0;
     el.style.left = `${left}px`;
+    console.log(
+      `%c${e.type}`,
+      labelStyle,
+      "left",
+      left,
+      "e.clientX",
+      e.clientX
+    );
     setPosX(e.clientX);
   };
 
-  const handlePointerOut = () => {
-    console.log("handlePointerOut");
+  const handlePointerOut = (e) => {
+    console.log(`%c${e.type}`, labelStyle);
   };
 
-  const handlePointerLeave = () => {
-    console.log("handlePointerLeave");
+  const handlePointerLeave = (e) => {
+    console.log(`%c${e.type}`, labelStyle);
   };
 
-  const handleGotPointerCapture = () => {
-    console.log("handleGotPointerCapture");
+  const handleGotPointerCapture = (e) => {
+    console.log(`%c${e.type}`, labelStyle);
   };
 
-  const handleLostPointerCapture = () => {
-    console.log("handleLostPointerCapture");
+  const handleLostPointerCapture = (e) => {
+    console.log(`%c${e.type}`, labelStyle);
   };
 
   const handlePointerCancel = (e) => {
-    console.log("handlePointerCancel");
+    console.log(`%c${e.type}`, labelStyle);
     if (timer) clearTimeout(timer);
     setPosX(null);
     setIsMoving(false);
@@ -91,13 +99,13 @@ const Crop = (_, ref) => {
       onPointerUp={handlePointerUp}
       onPointerMove={handlePointerMove}
       onPointerCancel={handlePointerCancel}
-      onContextMenu={(e) => e.preventDefault()}
       onPointerOut={handlePointerOut}
       onPointerLeave={handlePointerLeave}
       onGotPointerCapture={handleGotPointerCapture}
       onLostPointerCapture={handleLostPointerCapture}
+      onContextMenu={(e) => e.preventDefault()}
     ></span>
   );
 };
 
-export default forwardRef(Crop);
+export default Crop;
