@@ -11,12 +11,14 @@ const useLongClick = (ref, callback, options) => {
     const bind = () => {
       el.addEventListener("pointerup", handlePointerUp);
       el.addEventListener("pointerleave", handlePointerCancel);
+      el.addEventListener("pointerout", handlePointerCancel);
       el.addEventListener("pointercancel", handlePointerCancel);
     };
 
     const unbind = () => {
       el.removeEventListener("pointerup", handlePointerUp);
       el.removeEventListener("pointerleave", handlePointerCancel);
+      el.removeEventListener("pointerout", handlePointerCancel);
       el.removeEventListener("pointercancel", handlePointerCancel);
     };
 
@@ -31,12 +33,7 @@ const useLongClick = (ref, callback, options) => {
     };
 
     const handlePointerUp = (e) => {
-      const isMouseEvent = e.pointerType === "mouse";
-      const isSkip = isSkipMouse && isMouseEvent;
-      const isPassed = performance.now() - startTime >= duration;
-      if (isSkip || isPassed) callback(e);
-      startTime = null;
-      unbind();
+      if (startTime) callback(e);
     };
 
     el.addEventListener("pointerdown", handlePointerDown);
