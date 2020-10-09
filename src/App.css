@@ -1,9 +1,8 @@
-.App {
-  text-align: center;
-  width: 90%;
-  margin: 0 auto;
-  text-align: center;
-  user-select: none;
+html, body {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
 }
 
 ul, li {
@@ -11,8 +10,22 @@ ul, li {
   padding: 0;
 }
 
-ul {
-  touch-action: auto;
+.App {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+  text-align: center;
+  text-align: center;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.Wrapper {
+  width: 90%;
+  margin: 0 auto;
 }
 
 .Item {
@@ -48,13 +61,23 @@ ul {
   border: solid 1px #f003;
   width: 50px;
   height: 50px;
+  z-index: 1;
+}
+
+.Crop-portrait {
+  top: 7.5%;
+  bottom: 0;
+  width: 100%;
+  height: 85%;
+  left: 0
+}
+
+.Crop-landscape {
   top: 0;
   bottom: 0;
   width: 85%;
   height: 100%;
   left: 7.5%;
-  z-index: 1;
-  touch-action: auto;
 }
 
 .Crop--moving {
