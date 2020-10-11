@@ -10,11 +10,6 @@ object-assign
   http://jedwatson.github.io/classnames
 */
 
-/*!
- * PEP v0.5.1 | https://github.com/jquery/PEP
- * Copyright jQuery Foundation and other contributors | http://jquery.org/license
- */
-
 /** @license React v0.19.1
  * scheduler.production.min.js
  *
